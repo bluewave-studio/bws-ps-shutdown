@@ -1,0 +1,26 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          bws-shutdown.py
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+### END INIT INFO
+
+case "$1" in
+  start)
+    echo "Starting bws-shutdown.py"
+    /usr/local/bin/bws-shutdown.py &
+    ;;
+  stop)
+    echo "Stopping bws-shutdown.py"
+    pkill -f /usr/local/bin/bws-shutdown.py
+    ;;
+  *)
+    echo "Usage: /etc/init.d/bws-ps {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
